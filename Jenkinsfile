@@ -5,13 +5,13 @@ pipeline {
        
         stage('Compile') {
             steps {
-                bat 'javac Add.java'
+                bat 'javac Main.java'
             }
         }
         
         stage('Test') {
             steps {
-                bat 'Java Add'
+                bat 'Java Main'
             }
         }
     }
