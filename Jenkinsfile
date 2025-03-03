@@ -1,19 +1,44 @@
 pipeline {
     agent any
+    
     stages {
-        stage("Compile") {
+        stage('Checkout') {
             steps {
-                script {
-                    sh 'javac Add.java'
-                }
+                git branch: 'main', url: 'https://github.com/your-repo.git'
             }
         }
-        stage("Run") {
+        
+        stage('Compile') {
             steps {
-                script {
-                    sh 'java Add'
-                }
+                bat 'mvn clean compile'
             }
+        }
+        
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+        
+        stage('Package') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                bat 'mvn deploy'
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Build and deployment successful!'
+        }
+        failure {
+            echo 'Build failed! Check the logs.'
         }
     }
 }
