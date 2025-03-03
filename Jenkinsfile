@@ -5,25 +5,13 @@ pipeline {
        
         stage('Compile') {
             steps {
-                bat 'mvn clean compile'
+                bat 'javac Add.java'
             }
         }
         
         stage('Test') {
             steps {
-                bat 'mvn test'
-            }
-        }
-        
-        stage('Package') {
-            steps {
-                bat 'mvn package'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                bat 'mvn deploy'
+                bat 'Java Add'
             }
         }
     }
