@@ -1,15 +1,19 @@
-pipeline{
-  agent any
-  stages{
-    stage("compile"){
-      steps{
-        sh 'javac Add.java'
-      }
+pipeline {
+    agent any
+    stages {
+        stage("Compile") {
+            steps {
+                script {
+                    sh 'javac Add.java'
+                }
+            }
+        }
+        stage("Run") {
+            steps {
+                script {
+                    sh 'java Add'
+                }
+            }
+        }
     }
-    stage("run"){
-      steps{
-        sh 'java Add'
-      }
-    }
-  }
 }
